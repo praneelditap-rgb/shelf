@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#000000" />
+<title>Shelf — IEB matric finals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script>
+  if (window.pdfjsLib) {
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+  }
+</script>
+<script src="./config.js"></script>
+<style>
+  html, body, #root { min-height: 100%; background: #000000; }
+  body { margin: 0; font-family: 'Inter Tight', system-ui, sans-serif; color: #E9ECEF; -webkit-font-smoothing: antialiased; }
+  ::selection { background: #E0B252; color: #171310; }
+  input, textarea { color-scheme: dark; }
+  input:focus-visible, button:focus-visible, a:focus-visible, textarea:focus-visible { outline: 2px solid #E0B252; outline-offset: 2px; }
+
+  /* --- motion: quick, springy, never floaty --- */
+  html { scroll-behavior: smooth; }
+  button, a, input, textarea, select, [role="button"] {
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease,
+                transform .15s cubic-bezier(.2,.9,.25,1), opacity .15s ease;
+  }
+  button:active, a:active { transform: scale(.975); }
+  canvas { transition: opacity .18s ease; }
+
+  /* --- scrolling: momentum on touch, no rubber-band bleed --- */
+  .overflow-auto, .overflow-x-auto, body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #2A323B transparent;
+  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #232A33; border-radius: 8px; border: 3px solid #000; }
+  ::-webkit-scrollbar-thumb:hover { background: #333D48; }
+
+  /* --- cards and rows arrive rather than snap in --- */
+  @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  main .grid > *, main .space-y-2 > * {
+    animation: rise .26s cubic-bezier(.2,.9,.25,1) both;
+  }
+  main .grid > *:nth-child(1), main .space-y-2 > *:nth-child(1) { animation-delay: .01s; }
+  main .grid > *:nth-child(2), main .space-y-2 > *:nth-child(2) { animation-delay: .04s; }
+  main .grid > *:nth-child(3), main .space-y-2 > *:nth-child(3) { animation-delay: .07s; }
+  main .grid > *:nth-child(4), main .space-y-2 > *:nth-child(4) { animation-delay: .10s; }
+  main .grid > *:nth-child(5), main .space-y-2 > *:nth-child(5) { animation-delay: .13s; }
+  main .grid > *:nth-child(6), main .space-y-2 > *:nth-child(6) { animation-delay: .16s; }
+  main .grid > *:nth-child(n+7), main .space-y-2 > *:nth-child(n+7) { animation-delay: .18s; }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+  @media print { .no-print { display: none !important; } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="./app.js"></script>
+</body>
+</html>
